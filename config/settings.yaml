@@ -1,0 +1,99 @@
+# ============================================================
+# World News Intelligence Dashboard – Settings
+# ============================================================
+# Secrets (NEWSAPI_KEY) must be set via environment variable,
+# never committed to version control.
+
+db_path: data/processed/news.duckdb
+model_path: data/processed/classifier.pkl
+log_level: INFO
+log_file: logs/pipeline.log
+
+ingest_batch_size: 200
+enrich_batch_size: 200
+dashboard_port: 8501
+timezone: America/Montreal
+trend_days: 7
+
+# ============================================================
+# RSS Feed Sources
+# Add more by appending { name: ..., url: ..., enabled: true }
+# ============================================================
+feeds:
+  # ── Global / Geopolitics ─────────────────────────────────
+  - name: Reuters World
+    url: https://feeds.reuters.com/reuters/worldNews
+    enabled: true
+
+  - name: BBC World
+    url: http://feeds.bbci.co.uk/news/world/rss.xml
+    enabled: true
+
+  - name: Al Jazeera
+    url: https://www.aljazeera.com/xml/rss/all.xml
+    enabled: true
+
+  # ── Business / Economy ───────────────────────────────────
+  - name: Reuters Business
+    url: https://feeds.reuters.com/reuters/businessNews
+    enabled: true
+
+  - name: Financial Times (free)
+    url: https://www.ft.com/rss/home
+    enabled: true
+
+  - name: Bloomberg Markets (free)
+    url: https://feeds.bloomberg.com/markets/news.rss
+    enabled: true
+
+  # ── Tech & AI ────────────────────────────────────────────
+  - name: TechCrunch
+    url: https://techcrunch.com/feed/
+    enabled: true
+
+  - name: Wired
+    url: https://www.wired.com/feed/rss
+    enabled: true
+
+  - name: The Verge
+    url: https://www.theverge.com/rss/index.xml
+    enabled: true
+
+  # ── Climate & Energy ─────────────────────────────────────
+  - name: Guardian Environment
+    url: https://www.theguardian.com/environment/rss
+    enabled: true
+
+  - name: Inside Climate News
+    url: https://insideclimatenews.org/feed/
+    enabled: true
+
+  # ── Health ───────────────────────────────────────────────
+  - name: STAT News
+    url: https://www.statnews.com/feed/
+    enabled: true
+
+  - name: Reuters Health
+    url: https://feeds.reuters.com/reuters/healthNews
+    enabled: true
+
+  # ── Canada-Specific ──────────────────────────────────────
+  - name: CBC News Canada
+    url: https://www.cbc.ca/cmlink/rss-canada
+    enabled: true
+
+  - name: CBC Business
+    url: https://www.cbc.ca/cmlink/rss-business
+    enabled: true
+
+  - name: Globe and Mail
+    url: https://www.theglobeandmail.com/rss/article/topic/canada/
+    enabled: true
+
+  - name: Montreal Gazette
+    url: https://montrealgazette.com/feed/
+    enabled: true
+
+  - name: Le Devoir
+    url: https://www.ledevoir.com/rss/manchettes.xml
+    enabled: true
