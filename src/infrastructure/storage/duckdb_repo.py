@@ -238,18 +238,19 @@ class DuckDBArticleRepository(ArticleRepository):
 
     def trend_data(self, days: int = 7) -> list[tuple]:
         """Return (date, category, count) for trend charts."""
-        sql = """
+        # DuckDB does not support ? placeholder inside INTERVAL — interpolate directly.
+        sql = f"""
             SELECT
                 CAST(published_utc AS DATE) AS pub_date,
                 category,
                 COUNT(*) AS n
             FROM articles
-            WHERE published_utc >= now() - INTERVAL ? DAY
+            WHERE published_utc >= now() - INTERVAL '{days} days'
             GROUP BY pub_date, category
             ORDER BY pub_date, category
         """
         with self._conn() as conn:
-            return conn.execute(sql, [days]).fetchall()
+            return conn.execute(sql).fetchall()
 
     def category_sentiment_summary(self) -> list[tuple]:
         """Return (category, avg_sentiment_score, count) for monitoring page."""

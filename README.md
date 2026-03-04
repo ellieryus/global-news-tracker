@@ -1,4 +1,4 @@
-# 🌍 World News Intelligence Dashboard
+# World News Intelligence Dashboard
 
 A **portfolio-grade, production-ready** data science project that ingests global news via RSS feeds, enriches articles with NLP (topic classification + sentiment), stores everything in DuckDB, and serves a 4-page interactive Streamlit dashboard.
 
@@ -40,14 +40,14 @@ Built following the full **Data Science Lifecycle**: problem framing → data ac
 
 ### Key Design Decisions
 
-| Decision | Choice | Rationale |
-|---|---|---|
-| Storage | **DuckDB** | Columnar OLAP – 10x faster for GROUP BY / date-range dashboard queries vs SQLite |
-| Sentiment | **VADER** | Designed for short news text; no runtime corpus download; compound score maps cleanly to pos/neg/neutral |
-| NLP Baseline | **Keyword rules** | Zero training data required; immediately useful |
-| NLP Improved | **TF-IDF + LogisticRegression** | Lightweight ML; trains on weak labels from keyword baseline; ~1 MB model |
-| Dashboard | **Streamlit** | Fastest path to interactive analytics; Python-native; easy deployment |
-| Architecture | **Layered + Ports/Adapters** | Domain logic never imports infrastructure; fully testable; swappable components |
+| Decision     | Choice                          | Rationale                                                                                                |
+| ------------ | ------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| Storage      | **DuckDB**                      | Columnar OLAP – 10x faster for GROUP BY / date-range dashboard queries vs SQLite                         |
+| Sentiment    | **VADER**                       | Designed for short news text; no runtime corpus download; compound score maps cleanly to pos/neg/neutral |
+| NLP Baseline | **Keyword rules**               | Zero training data required; immediately useful                                                          |
+| NLP Improved | **TF-IDF + LogisticRegression** | Lightweight ML; trains on weak labels from keyword baseline; ~1 MB model                                 |
+| Dashboard    | **Streamlit**                   | Fastest path to interactive analytics; Python-native; easy deployment                                    |
+| Architecture | **Layered + Ports/Adapters**    | Domain logic never imports infrastructure; fully testable; swappable components                          |
 
 ---
 
@@ -103,6 +103,7 @@ news_dashboard/
 ## Quick Start
 
 ### Prerequisites
+
 - Python 3.11+
 - `pip`
 
@@ -152,6 +153,7 @@ This adds the following entry to your crontab:
 ```
 
 **Manage cron:**
+
 ```bash
 make cron-status   # check if installed
 make cron-remove   # remove it
@@ -167,13 +169,14 @@ make cron-remove   # remove it
 ingest_raw → transform_clean → enrich_nlp → serve (dashboard)
 ```
 
-| Stage | What happens |
-|---|---|
-| `ingest_raw` | Fetch RSS feeds; deduplicate by URL hash; store cleaned articles |
+| Stage        | What happens                                                                    |
+| ------------ | ------------------------------------------------------------------------------- |
+| `ingest_raw` | Fetch RSS feeds; deduplicate by URL hash; store cleaned articles                |
 | `enrich_nlp` | Classify topic (keyword rules or ML), score sentiment (VADER), extract entities |
-| `train` | Retrain ML classifier on keyword-labelled corpus (run manually / weekly) |
+| `train`      | Retrain ML classifier on keyword-labelled corpus (run manually / weekly)        |
 
 **Individual stage runs:**
+
 ```bash
 make ingest-only    # just fetch + clean
 make enrich-only    # just NLP enrichment
@@ -184,25 +187,25 @@ make train-model    # retrain ML classifier
 
 ## News Categories
 
-| ID | Category | Example Keywords |
-|---|---|---|
-| A | Geopolitics & Conflict | war, NATO, sanctions, ceasefire |
-| B | Global Economy & Financial Stability | GDP, inflation, Federal Reserve, recession |
-| C | Tech & AI Power Shifts | AI, LLM, OpenAI, semiconductor, antitrust |
-| D | Climate & Energy | carbon, emissions, net zero, wildfire |
-| E | Public Health & Demographics | pandemic, WHO, vaccine, demographics |
-| F | Canada-Specific | Bank of Canada, immigration, BoC, Quebec |
+| ID  | Category                             | Example Keywords                           |
+| --- | ------------------------------------ | ------------------------------------------ |
+| A   | Geopolitics & Conflict               | war, NATO, sanctions, ceasefire            |
+| B   | Global Economy & Financial Stability | GDP, inflation, Federal Reserve, recession |
+| C   | Tech & AI Power Shifts               | AI, LLM, OpenAI, semiconductor, antitrust  |
+| D   | Climate & Energy                     | carbon, emissions, net zero, wildfire      |
+| E   | Public Health & Demographics         | pandemic, WHO, vaccine, demographics       |
+| F   | Canada-Specific                      | Bank of Canada, immigration, BoC, Quebec   |
 
 ---
 
 ## Dashboard Pages
 
-| Page | Description |
-|---|---|
-| 📊 Executive Overview | KPIs, article counts by category, trend lines, top sources, latest headlines |
-| 🔍 Category Explorer | Filter by category / source / date / sentiment; entity tag cloud |
-| 📈 Market & Policy Watchlist | Keyword-signal alerts for BoC, Fed, inflation, tariffs, AI regulation, oil |
-| 🔬 Model Quality & Monitoring | Confidence distribution, category drift, sentiment by category, retrain button |
+| Page                       | Description                                                                    |
+| -------------------------- | ------------------------------------------------------------------------------ |
+| Executive Overview         | KPIs, article counts by category, trend lines, top sources, latest headlines   |
+| Category Explorer          | Filter by category / source / date / sentiment; entity tag cloud               |
+| Market & Policy Watchlist  | Keyword-signal alerts for BoC, Fed, inflation, tariffs, AI regulation, oil     |
+| Model Quality & Monitoring | Confidence distribution, category drift, sentiment by category, retrain button |
 
 ---
 
@@ -240,12 +243,14 @@ make format        # black + ruff --fix
 ## Monitoring & Retraining Plan
 
 **Lightweight monitoring (built-in, Page 4):**
+
 - Unknown category % – target < 15%
 - Average confidence – target > 0.55
 - Daily category distribution drift (area chart)
 - Sentiment drift per category
 
 **Retraining triggers:**
+
 - Weekly scheduled (add `make train-model` to cron)
 - On demand via dashboard button
 - When UNKNOWN% > 20% or confidence < 0.5
@@ -261,33 +266,32 @@ See [Next Improvements](#next-improvements) below.
 ## Next Improvements
 
 ### MLOps
+
 - [ ] MLflow experiment tracking for classifier versions
 - [ ] Automated retraining pipeline with performance regression gates
 - [ ] A/B test keyword vs ML classifier on held-out labelled set
 
 ### Better Labelling
+
 - [ ] Zero-shot classification via `facebook/bart-large-mnli` (no training data)
 - [ ] Active learning loop: surface low-confidence articles for manual labelling
 - [ ] LLM-based weak label generation (Claude API) for bootstrapping
 
 ### Source Quality
+
 - [ ] Source credibility scoring (AllSides, Media Bias/Fact Check integration)
 - [ ] Duplicate detection across sources using title semantic similarity
 - [ ] Paywalled source handling (archive.ph fallback)
 
 ### Multilingual Support
+
 - [ ] Francophone feeds (Le Monde, RFI) with language detection (langdetect)
 - [ ] Translation pipeline for non-English articles before NLP
 
 ### Production
+
 - [ ] Docker Compose deployment (pipeline + dashboard containers)
 - [ ] PostgreSQL migration for multi-user / concurrent write scenarios
 - [ ] Webhook alerts (Slack/email) on watchlist signal spikes
 - [ ] Full-text search index (DuckDB FTS extension)
 - [ ] API layer (FastAPI) to expose article data programmatically
-
----
-
-## License
-
-MIT – see LICENSE file.

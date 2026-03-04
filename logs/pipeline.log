@@ -1,0 +1,65 @@
+2026-03-02T21:02:08Z INFO     __main__                            Starting pipeline – stage=all
+2026-03-02T21:02:08Z INFO     src.infrastructure.storage.duckdb_repo DuckDB schema initialised at data/processed/news.duckdb
+2026-03-02T21:02:08Z INFO     src.application.use_cases           Fetching from source: Reuters World
+2026-03-02T21:02:08Z INFO     src.infrastructure.feeds.rss        Fetching RSS feed: Reuters World (https://feeds.reuters.com/reuters/worldNews)
+2026-03-02T21:02:08Z ERROR    src.infrastructure.feeds.rss        HTTP error fetching https://feeds.reuters.com/reuters/worldNews: HTTPSConnectionPool(host='feeds.reuters.com', port=443): Max retries exceeded with url: /reuters/worldNews (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x10563e7b0>: Failed to resolve 'feeds.reuters.com' ([Errno 8] nodename nor servname provided, or not known)"))
+2026-03-02T21:02:08Z INFO     src.application.use_cases           Fetching from source: BBC World
+2026-03-02T21:02:08Z INFO     src.infrastructure.feeds.rss        Fetching RSS feed: BBC World (http://feeds.bbci.co.uk/news/world/rss.xml)
+2026-03-02T21:02:08Z INFO     src.infrastructure.feeds.rss        Parsed 32 entries from BBC World
+2026-03-02T21:02:14Z INFO     numexpr.utils                       NumExpr defaulting to 10 threads.
+2026-03-02T21:02:18Z INFO     src.application.use_cases           Fetching from source: Al Jazeera
+2026-03-02T21:02:18Z INFO     src.infrastructure.feeds.rss        Fetching RSS feed: Al Jazeera (https://www.aljazeera.com/xml/rss/all.xml)
+2026-03-02T21:02:18Z INFO     src.infrastructure.feeds.rss        Parsed 25 entries from Al Jazeera
+2026-03-02T21:02:19Z INFO     src.application.use_cases           Fetching from source: Reuters Business
+2026-03-02T21:02:19Z INFO     src.infrastructure.feeds.rss        Fetching RSS feed: Reuters Business (https://feeds.reuters.com/reuters/businessNews)
+2026-03-02T21:02:19Z ERROR    src.infrastructure.feeds.rss        HTTP error fetching https://feeds.reuters.com/reuters/businessNews: HTTPSConnectionPool(host='feeds.reuters.com', port=443): Max retries exceeded with url: /reuters/businessNews (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x10581ccd0>: Failed to resolve 'feeds.reuters.com' ([Errno 8] nodename nor servname provided, or not known)"))
+2026-03-02T21:02:19Z INFO     src.application.use_cases           Fetching from source: Financial Times (free)
+2026-03-02T21:02:19Z INFO     src.infrastructure.feeds.rss        Fetching RSS feed: Financial Times (free) (https://www.ft.com/rss/home)
+2026-03-02T21:02:20Z INFO     src.infrastructure.feeds.rss        Parsed 10 entries from Financial Times (free)
+2026-03-02T21:02:21Z INFO     src.application.use_cases           Fetching from source: Bloomberg Markets (free)
+2026-03-02T21:02:21Z INFO     src.infrastructure.feeds.rss        Fetching RSS feed: Bloomberg Markets (free) (https://feeds.bloomberg.com/markets/news.rss)
+2026-03-02T21:02:22Z INFO     src.infrastructure.feeds.rss        Parsed 30 entries from Bloomberg Markets (free)
+2026-03-02T21:02:23Z INFO     src.application.use_cases           Fetching from source: TechCrunch
+2026-03-02T21:02:23Z INFO     src.infrastructure.feeds.rss        Fetching RSS feed: TechCrunch (https://techcrunch.com/feed/)
+2026-03-02T21:02:23Z INFO     src.infrastructure.feeds.rss        Parsed 20 entries from TechCrunch
+2026-03-02T21:02:24Z INFO     src.application.use_cases           Fetching from source: Wired
+2026-03-02T21:02:24Z INFO     src.infrastructure.feeds.rss        Fetching RSS feed: Wired (https://www.wired.com/feed/rss)
+2026-03-02T21:02:24Z INFO     src.infrastructure.feeds.rss        Parsed 50 entries from Wired
+2026-03-02T21:02:26Z INFO     src.application.use_cases           Fetching from source: The Verge
+2026-03-02T21:02:26Z INFO     src.infrastructure.feeds.rss        Fetching RSS feed: The Verge (https://www.theverge.com/rss/index.xml)
+2026-03-02T21:02:26Z INFO     src.infrastructure.feeds.rss        Parsed 10 entries from The Verge
+2026-03-02T21:02:27Z INFO     src.application.use_cases           Fetching from source: Guardian Environment
+2026-03-02T21:02:27Z INFO     src.infrastructure.feeds.rss        Fetching RSS feed: Guardian Environment (https://www.theguardian.com/environment/rss)
+2026-03-02T21:02:28Z INFO     src.infrastructure.feeds.rss        Parsed 25 entries from Guardian Environment
+2026-03-02T21:02:29Z INFO     src.application.use_cases           Fetching from source: Inside Climate News
+2026-03-02T21:02:29Z INFO     src.infrastructure.feeds.rss        Fetching RSS feed: Inside Climate News (https://insideclimatenews.org/feed/)
+2026-03-02T21:02:30Z INFO     src.infrastructure.feeds.rss        Parsed 10 entries from Inside Climate News
+2026-03-02T21:02:31Z INFO     src.application.use_cases           Fetching from source: STAT News
+2026-03-02T21:02:31Z INFO     src.infrastructure.feeds.rss        Fetching RSS feed: STAT News (https://www.statnews.com/feed/)
+2026-03-02T21:02:31Z INFO     src.infrastructure.feeds.rss        Parsed 20 entries from STAT News
+2026-03-02T21:02:32Z INFO     src.application.use_cases           Fetching from source: Reuters Health
+2026-03-02T21:02:32Z INFO     src.infrastructure.feeds.rss        Fetching RSS feed: Reuters Health (https://feeds.reuters.com/reuters/healthNews)
+2026-03-02T21:02:32Z ERROR    src.infrastructure.feeds.rss        HTTP error fetching https://feeds.reuters.com/reuters/healthNews: HTTPSConnectionPool(host='feeds.reuters.com', port=443): Max retries exceeded with url: /reuters/healthNews (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x10581ccd0>: Failed to resolve 'feeds.reuters.com' ([Errno 8] nodename nor servname provided, or not known)"))
+2026-03-02T21:02:32Z INFO     src.application.use_cases           Fetching from source: CBC News Canada
+2026-03-02T21:02:32Z INFO     src.infrastructure.feeds.rss        Fetching RSS feed: CBC News Canada (https://www.cbc.ca/cmlink/rss-canada)
+2026-03-02T21:02:33Z INFO     src.infrastructure.feeds.rss        Parsed 20 entries from CBC News Canada
+2026-03-02T21:02:34Z INFO     src.application.use_cases           Fetching from source: CBC Business
+2026-03-02T21:02:34Z INFO     src.infrastructure.feeds.rss        Fetching RSS feed: CBC Business (https://www.cbc.ca/cmlink/rss-business)
+2026-03-02T21:02:34Z INFO     src.infrastructure.feeds.rss        Parsed 20 entries from CBC Business
+2026-03-02T21:02:36Z INFO     src.application.use_cases           Fetching from source: Globe and Mail
+2026-03-02T21:02:36Z INFO     src.infrastructure.feeds.rss        Fetching RSS feed: Globe and Mail (https://www.theglobeandmail.com/rss/article/topic/canada/)
+2026-03-02T21:02:36Z ERROR    src.infrastructure.feeds.rss        HTTP error fetching https://www.theglobeandmail.com/rss/article/topic/canada/: 404 Client Error: Not Found for url: https://www.theglobeandmail.com/rss/article/topic/canada/
+2026-03-02T21:02:36Z INFO     src.application.use_cases           Fetching from source: Montreal Gazette
+2026-03-02T21:02:36Z INFO     src.infrastructure.feeds.rss        Fetching RSS feed: Montreal Gazette (https://montrealgazette.com/feed/)
+2026-03-02T21:02:37Z INFO     src.infrastructure.feeds.rss        Parsed 10 entries from Montreal Gazette
+2026-03-02T21:02:38Z INFO     src.application.use_cases           Fetching from source: Le Devoir
+2026-03-02T21:02:38Z INFO     src.infrastructure.feeds.rss        Fetching RSS feed: Le Devoir (https://www.ledevoir.com/rss/manchettes.xml)
+2026-03-02T21:02:38Z INFO     src.infrastructure.feeds.rss        Parsed 36 entries from Le Devoir
+2026-03-02T21:02:39Z INFO     src.application.use_cases           IngestRaw complete – processed=317 failed=0
+2026-03-02T21:02:39Z INFO     __main__                            Ingest complete: processed=317 failed=0
+2026-03-02T21:02:39Z INFO     src.application.use_cases           Enriching 200 articles
+2026-03-02T21:02:41Z INFO     src.application.use_cases           EnrichNLP complete – processed=200 failed=0
+2026-03-02T21:02:41Z INFO     __main__                            Enrich complete: processed=200 failed=0
+2026-03-02T21:02:41Z INFO     __main__                            Pipeline finished.
+2026-03-02T21:03:27Z INFO     src.infrastructure.storage.duckdb_repo DuckDB schema initialised at data/processed/news.duckdb
+2026-03-02T21:05:21Z INFO     src.infrastructure.storage.duckdb_repo DuckDB schema initialised at data/processed/news.duckdb
